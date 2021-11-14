@@ -6,7 +6,10 @@ Currently able to display basic data using a github access token .
  I have not placed my own token in the repo so make sure to add it in when compiling the program.
  This is my first time using an API and I am a beginner in python
 
-Currently using PyGithub and requests
+### Dependencies
+Python 3
+Pip
+PyGithub and requests
 
 ### To run)
 1. Have python 3 installed on laptop
