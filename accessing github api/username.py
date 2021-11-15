@@ -2,7 +2,8 @@ import requests
 from pprint import pprint
 
 # github username   using this website to learn more #https://www.thepythoncode.com/article/using-github-api-in-python
-username = "x4nth055"
+#username = "x4nth055"
+username = "merlinpr4"
 # url to request
 url = f"https://api.github.com/users/{username}"
 # make the request and return the json
@@ -15,16 +16,16 @@ from github import Github
 from pprint import pprint
 
 # Github username
-username = "x4nth055"
-#username = "merlinpr4"
-# pygithub object
-g = Github()
+# #username = "x4nth055"  #note using a username without authentication means rateLimit is lower 
+username = "merlinpr4"
+# pygithub object  put in authorisation code if rate limited
+g = Github("")
 # get that user by username
 user = g.get_user(username)
 
 for repo in user.get_repos():
     print(repo)
-
+  
 
 def print_repo(repo):
     # repository full name
@@ -53,3 +54,34 @@ def print_repo(repo):
         print("License:", base64.b64decode(repo.get_license().content.encode()).decode())
     except:
         pass
+
+
+    # iterate over all public repositories uncomment to see above function in action
+for repo in user.get_repos():
+    print_repo(repo)
+    print("="*100)
+
+
+# # search repositories by name
+# for repo in g.search_repositories("pythoncode tutorials"):
+#     # print repository details
+#     print_repo(repo)
+
+# username = "username"
+# password = "password"
+
+# # authenticate to github
+# g = Github(username, password)
+# # get the authenticated user
+# user = g.get_user()
+# for repo in user.get_repos():
+#     print_repo(repo)
+
+
+# # search by programming language
+# for i, repo in enumerate(g.search_repositories("language:python")):
+#     print_repo(repo)
+#     print("="*100)
+#     if i == 9:
+#         break
+
