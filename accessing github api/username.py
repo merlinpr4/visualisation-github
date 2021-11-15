@@ -16,17 +16,16 @@ from github import Github
 from pprint import pprint
 
 # Github username
-# #username = "x4nth055"  #note using a username without authentication means rateLimit is lower 
+##username = "x4nth055"  #note using a username without authentication means rateLimit is lower 
 username = "merlinpr4"
 # pygithub object  put in authorisation code if rate limited
-g = Github("")
+g = Github()
 # get that user by username
 user = g.get_user(username)
 
 for repo in user.get_repos():
     print(repo)
   
-
 def print_repo(repo):
     # repository full name
     print("Full name:", repo.full_name)
@@ -40,11 +39,16 @@ def print_repo(repo):
     print("Home Page:", repo.homepage)
     # programming language
     print("Language:", repo.language)
-    # number of forks
-    print("Number of forks:", repo.forks)
-    # number of stars
-    print("Number of stars:", repo.stargazers_count)
+    #number of commits 
+    print("Number of commits:",  repo.get_commits().totalCount)
+    # # number of forks 
+    # print("Number of forks:",  repo.forks)
+    # # number of stars
+    # print("Number of stars:", repo.stargazers_count)
     print("-"*50)
+
+   
+
     # repository content (files & directories)
     print("Contents:")
     for content in repo.get_contents(""):
@@ -55,6 +59,9 @@ def print_repo(repo):
     except:
         pass
 
+    # print("Commits:")
+    # for commits in repo.get_commit(sha = "main"):
+    #     print(commits)
 
     # iterate over all public repositories uncomment to see above function in action
 for repo in user.get_repos():
