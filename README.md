@@ -19,3 +19,6 @@ PyGithub and requests
 5.  Type python3 script.py to access the basic data of the user file (or sh gather.sh to run the shell script).
 6.  Type python3 script2.py to access the data in the database (or sh process.sh to run the shell script).
 7.  Type python3 cleardb.py to clear the database 
+
+Alt run options )
+1. Type python3 username.py basic data on the different repos of the user
