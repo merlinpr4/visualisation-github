@@ -26,7 +26,7 @@ class API:
     ##username = "x4nth055"  #note using a username without authentication means rateLimit is lower
     username = "merlinpr4"
     # pygithub object  put in authorisation code if rate limited
-    g = Github("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")
+    g = Github("")
     # get that user by username
     user = g.get_user(username)
 
