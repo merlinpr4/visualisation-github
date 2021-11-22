@@ -12,7 +12,7 @@ import pymongo              # for mongodb access
 
 #we initialise a PyGithub Github object with our access token.
 #  this is my merlinpr4 account access token i removed it before commiting for security
-g = Github("")
+g = Github("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")
 
 #Let's get the user object and build a data dictionary
 usr = g.get_user()
