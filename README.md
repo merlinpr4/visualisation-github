@@ -9,7 +9,8 @@
 7. Is my current level of access of the github api suffient to get the 20 % ?
 8. Will I also be getting marks for writing unit tests for this assigment or is that soley for the gameficiation game ? 
 9.  To reiterate I have been able to access the API and I understand how visualisation libraries work. My struggle is currently what way I should connect these components as I have never hosted a website before or did this kind of work . This is also my first time using an API or really python so I guess the struggle is expected.
-10.  Also is the deadline for the 3rd of december going to be fixed as I have 4 assigments due for that day or are we allowed to keep working on it afterwords ?
+10.  Also are we expected to unit test our code for api access or is that just for the gamefification score and will it not impact our marks here?
+11.  Also is the deadline for the 3rd of december going to be fixed as I have 4 assigments due for that day or are we allowed to keep working on it afterwords ?
 
 Thank you for any guidance I realised I ask quite a few questions . I don't mind also going on a call with a demonstrator if that would help with answering these queries .
 My email is prasadme@tcd.ie and my student number is 19333557.
