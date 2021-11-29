@@ -9,10 +9,13 @@ print("Demonstration python based github api access");
 from github import Github   # github api access
 import json                 # for converting a dictionary to a string
 import pymongo              # for mongodb access
+import os
 
 #we initialise a PyGithub Github object with our access token.
 #  this is my merlinpr4 account access token i removed it before commiting for security
-g = Github("")
+tk = os.getenv('GITHUB_PAT')
+g = Github(tk)
+
 
 #Let's get the user object and build a data dictionary
 usr = g.get_user()
