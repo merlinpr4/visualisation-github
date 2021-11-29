@@ -1,1 +1,1 @@
-python3 script2.py
+python3 process.py

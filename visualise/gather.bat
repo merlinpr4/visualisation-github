@@ -1,1 +1,1 @@
-python3 cleardb.py
+python3 gather.py
