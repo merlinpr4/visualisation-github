@@ -6,23 +6,18 @@
 print("Demonstration python based github api access");
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv("C:/Users/merli/Desktop/git v/visualisation-github/api.env")
 
 from github import Github   # github api access
 import json                 # for converting a dictionary to a string
 import pymongo              # for mongodb access
 import os
 
-
-USER = os.getenv("API_USER")
-print (USER)
-
-print (os.getenv("USER"))
 #we initialise a PyGithub Github object with our access token.
 #     note that this token is ours, and now deleted. You must 
 #     crete your own access token and use here instead. 
-tk = os.getenv(USER)
-g = Github(tk)
+token = os.getenv("TOKEN")
+g = Github(token)
 
 #Let's get the user object and build a data dictionary
 usr = g.get_user()
