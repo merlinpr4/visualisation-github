@@ -41,6 +41,7 @@ def print_repo(repo):
     print("Language:", repo.language)
     #number of commits 
     print("Number of commits:",  repo.get_commits().totalCount)
+   
     # # number of forks 
     # print("Number of forks:",  repo.forks)
     # # number of stars

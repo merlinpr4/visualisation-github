@@ -6,9 +6,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      #volumes: #if issues comment out
-      # - /somedirectory:/data/db  # you need to mondify this
-     # C:/Users/merli/Documents/SWENGDock:/data/db #comment out again if issues
+    volumes: #if issues comment out
+      #- /somedirectory:/data/db  # you need to mondify this
+      - C:/Users/merli/Documents/SWENGDock:/data/db #comment out again if issues
     ports:
       - 27017:27017
     restart: unless-stopped

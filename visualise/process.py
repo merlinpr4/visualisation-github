@@ -50,27 +50,27 @@ with open('data.csv', 'w') as f:
         
 
    
-# Data to be written
-dictionary ={
-    "name" : "sathiyajith",
-    "rollno" : 56,
-    "cgpa" : 8.6,
-    "phonenumber" : "9976770500"
-}
+# # Data to be written
+# dictionary ={
+#     "name" : "sathiyajith",
+#     "rollno" : 56,
+#     "cgpa" : 8.6,
+#     "phonenumber" : "9976770500"
+# }
 
-dct2 = db.githubuser.find({'user': {'$exists': True}})
-print("follower: " + json.dumps(dct))
+# dct2 = db.githubuser.find({'user': {'$exists': True}})
+# print("follower: " + json.dumps(dct))
     
-with open('data.json    ', 'w') as f:
-    f.write('User,RepoCount\n')
-    dct = db.githubuser.find({'user': {'$exists': True}})
-    for user in dct:
-        pprint.pprint(user)
-        print()
-        f.write(user['user'] + ',' + str(user['public_repos']) + '\n')
+# with open('data.json    ', 'w') as f:
+#     f.write('User,RepoCount\n')
+#     dct = db.githubuser.find({'user': {'$exists': True}})
+#     for user in dct:
+#         pprint.pprint(user)
+#         print()
+#         f.write(user['user'] + ',' + str(user['public_repos']) + '\n')
     
     
-with open("sample.json", "w") as outfile:
-    json.dump(dictionary, outfile, indent = 2 )
+# with open("sample.json", "w") as outfile:
+#     json.dump(dictionary, outfile, indent = 2 )
     
     

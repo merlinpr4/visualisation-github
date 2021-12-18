@@ -11,7 +11,7 @@ import pprint               # for pretty printing db data
 #Let's get the user object from the db
 
 # Establish connection
-conn = "mongodb://localhost:27017"
+conn = "mongodb://localhost:27017" #edited port of old container check if it works later
 client = pymongo.MongoClient(conn)
 
 # Create a database

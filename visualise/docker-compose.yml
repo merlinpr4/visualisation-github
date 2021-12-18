@@ -2,13 +2,15 @@ version: "3.8"
 services:
   mongodb:
     image : mongo
-    container_name: mongodb-csu33012
+    container_name: mongodb-csu33012-v2
     environment:
       - PUID=1000
       - PGID=1000
-      #volumes: #if issues comment out
-      # - /somedirectory:/data/db  # you need to mondify this
-     # C:/Users/merli/Documents/SWENGDock:/data/db #comment out again if issues
+    volumes: #if issues comment out
+      - C:/Users/merli/Documents/SWENGDock:/data/db #comment out again if issues
+      #- /somedirectory:/data/db  # you need to mondify this
+      
     ports:
-      - 27017:27017
+      - 27016:27016Y
+      
     restart: unless-stopped
