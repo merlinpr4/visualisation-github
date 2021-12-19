@@ -23,24 +23,31 @@ PyGithub and requests
 Faker
 Docker
 
+### run with prefetched data  (data from my github to be exact)
+1. Type server.bat
+1. Go to localhost:800 (http://localhost:8000/) to see visualisation.
+
+
 ### Inital setup)
 1. Have python 3 installed on laptop
 2. Have pip installed on laptop ( python3 get_pip.py ) --come back to check if there inital set up instructions are correct)
 3. Install pyGithub,Faker on laptop using pip (pip install Faker or install.bat)
 4. git clone this repo
-5. Start mongadb container container with docker-compose up (start-database.bat/start-database)
 
 
-### To run)
+### Run with personal access token and fetch new data to display
 There are bat files available for easier setup if you are on windows aswell
-6.  Type python3 gather.py to access the basic data of the user file (or gather.bat to run the bat script).
-7.  Type python3 process.py to access the data in the database (or process.bat to run the shell script).
-8.  Type python3 cleardb.py to clear the database 
-9.  Type python3 -m http.server to see the visulaisation on localhost:8000 (or run-server.bat)
-10. Go to localhost:800 (http://localhost:8000/) to see visualisation.
+1.  Go to visualise folder .
+1. Start mongadb container container with docker-compose up (start-database.bat/start-database)
+3.  Clear the previous files in the repo and database with clear (python3 cleardb.py , clear.bat)
+4.  Write your user access token in env file for token (ie TOKEN = useraccesstoken)
+5.  Type python3 gather.py to access the basic data of the user file (or gather.bat to run the bat script).
+6.  Type python3 process.py to access the data in the database (or process.bat to run the shell script).
+7.  Type python3 -m http.server to see the visulaisation on localhost:8000 (or server.bat)
+8. Go to localhost:800 (http://localhost:8000/) to see visualisation.
 
-Alt run options )
-1. Type python3 username.py basic data on the different repos of the user
+Accessing api simple )
+1. Type python3 username.py basic data on the different repos of the user in accessing api folder
 
 
 
