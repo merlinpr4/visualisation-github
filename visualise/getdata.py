@@ -49,15 +49,21 @@ client = pymongo.MongoClient(conn)
 # Create a database
 db = client.classDB
 
-db.githubuser.insert_many([dct])        
+db.githubuser.insert_many([dct])     
+   
+    # iterate over all public repositories uncomment to see above function in action
+# for repo in usr.get_repos():
+#     print_repo(repo)
+#     print("="*100)
         
         
-
-repo =  usr.get_repos()
-
-for r in repo:
-   # commits = r.get_commits().totalCount
-   # print(commits)
+for r in usr.get_repos():
+  
+    commits = 0      
+    try:
+     commits = r.get_commits().totalCount
+    except Exception: #empty repos with 0 commits default to 0
+      pass
     
     dct = {     "name": r.full_name,
                 # repository description
@@ -66,11 +72,10 @@ for r in repo:
                 "date created": r.created_at,
                 # the date of the last git push
                 "date of last push": r.pushed_at,
-                # programming language
-                "language": r.get_languages,
                 #number of commits 
-              #  "number of commits:": commits,
-                "commits url:" :r.commits_url
+                "number of commits:": commits,
+                # programming language
+                "language": r.language
                 }
     for k, v in dict(dct).items():
         if v is None:
@@ -82,12 +87,12 @@ for r in repo:
     
   
     
-with open('graph.csv', 'w') as f:
-    f.write('Repo,Commits\n')
-    for repo in dct:
-        pprint.pprint(repo)
-        print()
-        f.write(repo['name'] + ',' + str(repo["commits"]) + '\n')
+# with open('graph.csv', 'w') as f:
+#     f.write('Repo,Commits\n')
+#     for repo in dct:
+#         pprint.pprint(repo)
+#         print()
+#         f.write(repo['name'] + ',' + str(repo["commits"]) + '\n')
        
     
     
