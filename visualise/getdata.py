@@ -42,7 +42,7 @@ for k, v in dict(dct).items():
     if v is None:
         del dct[k]
         
-#print ("cleaned dictionary is " + json.dumps(dct))
+print ("cleaned dictionary is " + json.dumps(dct))
         
 # Establish connection
 conn = "mongodb://localhost:27017"
@@ -82,7 +82,7 @@ for r in usr.get_repos():
     except Exception: #empty repos with 0 commits default to 0
       pass
     
-    dct = {     "repo": r.full_name,
+    dct = {     "repo": r.name,
                 # repository description
                 "description": r.description,
                 # the date of when the repo was created

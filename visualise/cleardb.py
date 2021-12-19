@@ -7,7 +7,7 @@ print("Demonstration python based mongodb access");
 
 import pymongo              # for mongodb access
 import pprint               # for pretty printing db data
-
+import os
 #Let's get the user object from the db
 
 # Establish connection
@@ -19,3 +19,7 @@ db = client.classDB
 
 db.githubuser.delete_many({})
 db.githubrepo.delete_many({})
+
+os.remove("data.csv")
+os.remove("commits.csv")
+

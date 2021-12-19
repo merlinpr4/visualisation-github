@@ -7,7 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes: #if issues comment out
-      - C:/Users/merli/Documents/SWENGDock:/data/db #comment out again if issues
+      - C:/Users/merli/Documents/MongaDB:/data/db #comment out again if issues
       #- /somedirectory:/data/db  # you need to mondify this
       
     ports:
