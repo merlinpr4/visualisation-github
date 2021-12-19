@@ -27,3 +27,12 @@ with open('commits.csv', 'w') as f:
             f.write(repo['repo'] + ','   + str(repo['total_commits']) + '\n')
           
 
+with open('data.csv', 'w') as f:
+    f.write('User,RepoCount\n')
+    dct = db.githubuser.find({'user': {'$exists': True}})
+    for user in dct:
+        pprint.pprint(user)
+        print()
+        f.write(user['user'] + ',' + str(user['public_repos']) + '\n')
+    
+

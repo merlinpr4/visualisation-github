@@ -1,1 +1,1 @@
-python3 gather.py
+python3 getdata.py

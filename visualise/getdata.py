@@ -54,6 +54,25 @@ db = client.classDB
 db.githubuser.insert_many([dct])     
    
 
+
+# now lets get those followers
+fl = usr.get_followers()
+
+for f in fl:
+    dct = {'user':         names[f.login].replace(" ",""), # anonymising
+           'fullname':     names[f.name], # anonymising
+           'location':     f.location,
+           'company':      f.company,
+           'public_repos': f.public_repos
+           }
+    for k, v in dict(dct).items():
+        if v is None:
+            del dct[k]
+        
+    print("follower: " + json.dumps(dct))
+    db.githubuser.insert_many([dct])    
+
+
         
 for r in usr.get_repos():
 

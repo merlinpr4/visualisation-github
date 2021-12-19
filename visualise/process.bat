@@ -1,1 +1,1 @@
-python3 process.py
+python3 processdata.py

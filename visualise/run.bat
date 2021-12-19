@@ -1,2 +1,0 @@
-gather.bat   
-process.bat
