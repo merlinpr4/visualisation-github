@@ -5,6 +5,12 @@ Currently able to display users followers in a simple bar chart
 
 Access github api of a specifc user gathers info into mongadb database , create a graph on localhost:8000.
 
+Had a lot of initial difficulty with accessing the data I wanted from the api. Realised it would be better to scale back and gather another data and come back . Spending time accessing meant visualising took a hit
+
+So I struggled with accessing the data I wanted in python and tried switching over to javascript so I could just do the fetching and visualisation as one. However I realised later that after spending all this time on python it is probably better to just stick with using it so Im back to using python to create json files for a logged in user.
+
+Aiming to visualise commits per repo and than see how that goes
+
 
 ### Note :
  Include your own access token as a env variable named TOKEN  
