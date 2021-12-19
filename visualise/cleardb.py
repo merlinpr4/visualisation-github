@@ -18,3 +18,4 @@ client = pymongo.MongoClient(conn)
 db = client.classDB
 
 db.githubuser.delete_many({})
+db.githubrepo.delete_many({})
