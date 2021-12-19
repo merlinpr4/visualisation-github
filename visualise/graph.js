@@ -1,20 +1,30 @@
-const CHART = document.getElementById('lineChart');
+d3.csv("commits.csv").then(makeChart);
 
-var lineChart = new Chart(CHART, {
-   type: 'line',
-   data: {
-      labels: Object.keys(data),
-      datasets: [{
-         label: 'My first dataset',
-         fill: false,
-         lineTension: 0,
-         backgroundColor: "rgba(75,192,192,0.4)",
-         borderColor: "rgba(75,192,192,1)",
-         borderCapStyle: 'butt',
-         borderDash: [],
-         borderDashOffset: 0.0,
-         borderJointStyle: 'miter',
-         data: Object.values(data)
-      }]
-   }
-})
+
+function makeChart(repos) {
+  var reposLabels = repos.map(function (d) {
+    return d.Repo;
+  });
+  var commitsData = repos.map(function (d) {
+    return d.Commits;
+  });
+
+
+  print(commitsData.toString)
+
+
+
+
+
+  var chart = new Chart("myChart", {
+    type: "horizontalBar",
+    data: {
+      labels: reposLabels,
+      datasets: [
+        {
+          data: commitsData 
+        }
+      ]
+    }
+  });
+}
