@@ -84,7 +84,7 @@ console.log(sum);
 
  
   var chart2 = new Chart("sizePerRepo", {
-    type: 'pie',
+    type: 'bar',
     data: {
       labels: reposLabels,
       datasets: [{
@@ -146,6 +146,9 @@ var chart5 = new Chart("twoLineGraph", {
     },
     scales: {
       yAxes: [{
+        gridLines: {
+          display:false
+        },
         id: 'commits',
         type: 'linear',
         position: 'left',

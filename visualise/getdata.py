@@ -48,7 +48,7 @@ for k, v in dict(dct).items():
     if v is None:
         del dct[k]
         
-print ("cleaned dictionary is " + json.dumps(dct))
+#print ("dictionary is " + json.dumps(dct))
         
 # Establish connection
 conn = "mongodb://localhost:27017"
@@ -75,14 +75,14 @@ for f in fl:
         if v is None:
             del dct[k]
         
-    print("follower: " + json.dumps(dct))
+   # print("follower: " + json.dumps(dct))
     db.githubuser.insert_many([dct])    
 
 
  
         
 for r in usr.get_repos():
-
+    print( r.get_stats_commit_activity().totalCount)
     commits = 0      
     try:
      commits = r.get_commits().totalCount
@@ -99,6 +99,7 @@ for r in usr.get_repos():
                 #total number of commits 
                 "total_commits": commits,
                 "contributors" : r.get_contributors().totalCount,
+               # "total deletions" : r.get_stats_code_frequency,
                  "size": r.size,
                 # main programming language
                 "language": r.language
