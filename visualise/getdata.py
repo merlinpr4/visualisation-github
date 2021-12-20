@@ -77,12 +77,9 @@ for f in fl:
         
    # print("follower: " + json.dumps(dct))
     db.githubuser.insert_many([dct])    
-
-
- 
         
 for r in usr.get_repos():
-    print( r.get_stats_commit_activity().totalCount)
+#    print( r.get_stats_commit_activity().totalCount)
     commits = 0      
     try:
      commits = r.get_commits().totalCount

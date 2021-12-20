@@ -48,7 +48,7 @@ with open('commits.csv', 'w') as f:
             # try:
             #     description =  repo['description'] 
             # except KeyError: #some repos dont have a language
-            #  pass
+            #  pass come back to later
             
    
              

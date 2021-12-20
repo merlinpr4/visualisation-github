@@ -1,5 +1,7 @@
 d3.csv("commits.csv").then(makeChart);
 
+//configure charts to mouse clicks? cant decide which looks better
+
 //make arrays out of the csv values
 function makeChart(repos) {
   var reposLabels = repos.map(function (d) {
@@ -24,7 +26,7 @@ function makeChart(repos) {
     };
   });
 
-  
+ //get the average commits  
   let sum = 0;
   for(let i = 0 ; i < commitsData.length ; i ++) {
     console.log(commitsData[i]);
@@ -46,6 +48,8 @@ console.log(sum);
   var languages = repos.map(function (d) {
     return d.Language;
   });
+
+ 
 
   var languagesColor = repos.map(function   (d){
    
@@ -195,19 +199,22 @@ var chart3 = new Chart("sizeVsCommits", {
       datasets: [
         {
           label: "commits per repo",
+          legend : false ,
           backgroundColor:  languagesColor,
           data: commitsData,
           order:1 , 
           borderWidth: 1
+        },
+       {
+          label: "Average Commits: " + avg,
+          borderColor: "blue",
+          data: horizontalLine , 
+          borderDash : [3,3 ],
+          pointRadius : 0 ,
+          fill: false ,
+          type: "line",
+          order:0
         }
-      //  {
-        //   label: "average",
-        //   borderColor: "blue",
-        //   data: horizontalLine , 
-        //   pointRadius : 0 ,
-        //   type: "line",
-        //   order:0
-        // }
       ]
     },
       options: {
@@ -236,20 +243,20 @@ var chart3 = new Chart("sizeVsCommits", {
           callbacks: {
             label: function(tooltipItem, data) {
               let line1 = "Total Commits: " + Number(tooltipItem.yLabel)  ;
+              //let line4 =  "description: " + descriptions[tooltipItem.index] ; 
+              return line1 ;
+             
+            },
+            afterLabel: function(tooltipItem, data) {
               var numerator = commitsData[tooltipItem.index]
               var denominator =  sum ;
               var percent = Math.round((numerator/denominator) * 100)
               console.log(numerator)
               let line2 =  "Percentage: " + percent + "%";
-              let line3 =  "Language: " + languages[tooltipItem.index] ; 
-              let line5 = "Contributors" + contributors[tooltipItem.index];
-              return  [line1 ,line2,line3,line5];
-            },
-            afterLabel: function(tooltipItem, data) {
-              let line4 = "Size in KB: " + sizeData[tooltipItem.index];
-              //let line4 =  "description: " + descriptions[tooltipItem.index] ; 
-              return line4 ;
-
+              let line3 = "Size in KB: " + sizeData[tooltipItem.index]; 
+              let line4 = "Contributors" + contributors[tooltipItem.index];
+              let line5 =  "Language: " + languages[tooltipItem.index] ;
+              return  [line2 ,line3,line4,line5];
              
             }
           }
