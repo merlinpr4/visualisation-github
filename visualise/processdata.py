@@ -38,7 +38,7 @@ with open('commits.csv', 'w') as f:
             repo_list.append(repo['repo'])
             commits_list.append(str(repo['total_commits']))
             
-            #language = "N/A" 
+            language = "N/A" 
             try:
                 language =  repo['language'] 
             except KeyError: #some repos dont have a language
