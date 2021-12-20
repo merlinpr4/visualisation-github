@@ -1,6 +1,8 @@
 d3.csv("commits.csv").then(makeChart);
 
 //configure charts to mouse clicks? cant decide which looks better
+//tidy up code by seperating functions into seperate csv files and functions with comments
+
 
 //make arrays out of the csv values
 function makeChart(repos) {
@@ -49,7 +51,17 @@ console.log(sum);
     return d.Language;
   });
 
- 
+  var languagefreq = {};
+  languages.forEach(function (x) { languagefreq[x] = (languagefreq[x] || 0) + 1; });
+  console.log(languagefreq) 
+
+  var lang = [];
+  var freq = [];
+    for(x in languagefreq)
+    {
+      lang.push(x);
+      freq.push(languagefreq[x])
+    }
 
   var languagesColor = repos.map(function   (d){
    
@@ -204,6 +216,30 @@ var chart3 = new Chart("sizeVsCommits", {
     }
   }
 });
+
+var chart5 = new Chart("primaryLanguageFrequency", {
+  type: 'doughnut',
+  data: {
+    labels: lang,
+    datasets: [
+      {
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: freq
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Most commonly used primary language'
+    }
+  }
+});
+
+
+
+
 
 
 
