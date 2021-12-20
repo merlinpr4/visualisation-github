@@ -30,7 +30,7 @@ commits_list = []
 language_list = []
 description_list = []
 with open('commits.csv', 'w') as f:
-        f.write('Repo,Commits,Language,Description\n')
+        f.write('Repo,Commits,Language,Size,Contributors\n')
         dct = db.githubrepo.find({'repo': {'$exists': True}})
         for repo in dct:
             pprint.pprint(repo)
@@ -49,9 +49,11 @@ with open('commits.csv', 'w') as f:
             #     description =  repo['description'] 
             # except KeyError: #some repos dont have a language
             #  pass
+            
+   
              
      
-            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "\n")
+            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "," + str(repo['contributors']) +  "\n")
 
 
 

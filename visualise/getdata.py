@@ -98,7 +98,8 @@ for r in usr.get_repos():
                 "last_push": r.pushed_at,
                 #total number of commits 
                 "total_commits": commits,
-                 "total size": r.size,
+                "contributors" : r.get_contributors().totalCount,
+                 "size": r.size,
                 # main programming language
                 "language": r.language
                 }
