@@ -79,6 +79,7 @@ for f in fl:
     db.githubuser.insert_many([dct])    
 
 
+ 
         
 for r in usr.get_repos():
 
@@ -97,6 +98,7 @@ for r in usr.get_repos():
                 "last_push": r.pushed_at,
                 #total number of commits 
                 "total_commits": commits,
+                 "total size": r.size,
                 # main programming language
                 "language": r.language
                 }

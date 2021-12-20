@@ -18,6 +18,10 @@ function makeChart(repos) {
 
 console.log(sum);
 
+  var descriptions = repos.map(function (d){
+    return d.Descriptions;
+  });
+
   var languages = repos.map(function (d) {
     return d.Language;
   });
@@ -109,27 +113,28 @@ console.log(sum);
         //   },
        
         tooltips: {
-          displayColors:false,
+          
           callbacks: {
             label: function(tooltipItem, data) {
 
-              let line1 = "commits: " + Number(tooltipItem.yLabel)  ;
+              let line1 = "Total Commits: " + Number(tooltipItem.yLabel)  ;
             
 
               var numerator = commitsData[tooltipItem.index]
-              var denominator =   sum ;
+              var denominator =  sum ;
               var percent = Math.round((numerator/denominator) * 100)
               console.log(numerator)
 
-              let line2 =  "percentage: " + percent + "%";
+              let line2 =  "Percentage: " + percent + "%";
 
-              return  [line1 ,line2];
+              let line3 =  "Language: " + languages[tooltipItem.index] ; 
+
+              return  [line1 ,line2,line3];
             },
             afterLabel: function(tooltipItem, data) {
      
-            
-
-              return  "language: " + languages[tooltipItem.index] ; 
+              //let line4 =  "description: " + descriptions[tooltipItem.index] ; 
+              return "" ;
 
              
             }

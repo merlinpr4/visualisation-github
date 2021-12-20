@@ -43,8 +43,15 @@ with open('commits.csv', 'w') as f:
                 language =  repo['language'] 
             except KeyError: #some repos dont have a language
              pass
+         
+            # description = "empty"
+            # try:
+            #     description =  repo['description'] 
+            # except KeyError: #some repos dont have a language
+            #  pass
+             
      
-            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  +'\n')
+            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "\n")
 
 
 
