@@ -148,18 +148,34 @@ var chart5 = new Chart("twoLineGraph", {
     legend: {
       display: true
     },
+
+ 
+
+
     scales: {
       yAxes: [{
         gridLines: {
           display:false
         },
         id: 'commits',
+        labelString: "commits",
         type: 'linear',
         position: 'left',
-      }, {
+         scaleLabel: {
+          display: true,
+          labelString: "Total Commits",
+          fontSize: 16
+        }
+      },
+      {
         id: 'size',
         type: 'linear',
         position: 'right',
+        scaleLabel: {
+          display: true,
+          labelString: "Total Size",
+          fontSize: 16
+        }
       
       }]
     },
@@ -184,7 +200,7 @@ var chart3 = new Chart("sizeVsCommits", {
   options: {
     title: {
       display: true,
-      text: 'Predicted world population (millions) in 2050'
+      text: 'Size vs Commits'
     }
   }
 });
@@ -198,7 +214,7 @@ var chart3 = new Chart("sizeVsCommits", {
       labels: reposLabels,
       datasets: [
         {
-          label: "commits per repo",
+          label: "Commits",
           legend : false ,
           backgroundColor:  languagesColor,
           data: commitsData,
@@ -209,9 +225,10 @@ var chart3 = new Chart("sizeVsCommits", {
           label: "Average Commits: " + avg,
           borderColor: "blue",
           data: horizontalLine , 
-          borderDash : [3,3 ],
+          borderDash : [5,5 ],
           pointRadius : 0 ,
           fill: false ,
+          borderWidth: 1.5,
           type: "line",
           order:0
         }
