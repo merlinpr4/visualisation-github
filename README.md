@@ -16,7 +16,7 @@ Aiming to visualise commits per repo and than see how that goes
 
 
 ### Note :
- Include your own access token as a env variable named TOKEN  
+ Include your own access token as a env variable named TOKEN  in a  env file called api.env in the visualise folder
  This is my first time using an API and I am a beginner in python
 
 ### Dependencies
