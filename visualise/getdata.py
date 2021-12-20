@@ -2,7 +2,9 @@
 print("Accessing logged in users data");
 
 from dotenv import load_dotenv
-load_dotenv("C:/Users/merli/Desktop/git v/visualisation-github/api.env")
+load_dotenv("api.env")
+
+
 
 from github import Github   # github api access
 import json                 # for converting a dictionary to a string
@@ -21,11 +23,15 @@ names  = defaultdict(faker.name)
 
 #user token from env file
 token = os.getenv("TOKEN")
+print("token" + token)
 g = Github(token)
-
-
-#Let's get the user object and build a data dictionary
 usr = g.get_user()
+
+#alt version taking username warning gets rate limited
+#g = Github("bluesmiley")
+# g = Github()
+# #Let's get the user object and build a data dictionary
+# usr = g.get_user("Username")
 
 
 dct = {'user':         names[usr.login].replace(" ", ""), # anonymising
@@ -89,9 +95,9 @@ for r in usr.get_repos():
                 "created": r.created_at,
                 # the date of the last git push
                 "last_push": r.pushed_at,
-                #number of commits 
+                #total number of commits 
                 "total_commits": commits,
-                # programming language
+                # main programming language
                 "language": r.language
                 }
     for k, v in dict(dct).items():

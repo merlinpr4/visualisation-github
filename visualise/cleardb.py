@@ -20,6 +20,9 @@ db = client.classDB
 db.githubuser.delete_many({})
 db.githubrepo.delete_many({})
 
-os.remove("data.csv")
-os.remove("commits.csv")
+if os.path.exists("data.csv"):
+    os.remove("data.csv")
+
+if os.path.exists("commits.csv"):  
+    os.remove("commits.csv")
 

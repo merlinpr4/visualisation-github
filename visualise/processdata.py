@@ -20,22 +20,31 @@ with open('data.csv', 'w') as f:
     f.write('User,RepoCount\n')
     dct = db.githubuser.find({'user': {'$exists': True}})
     for user in dct:
-        pprint.pprint(user)
-        print()
+    #    pprint.pprint(user)
+        # print()
         f.write(user['user'] + ',' + str(user['public_repos']) + '\n')
 
 
 repo_list = []
 commits_list = []
+language_list = []
+description_list = []
 with open('commits.csv', 'w') as f:
-        f.write('Repo,Commits\n')
+        f.write('Repo,Commits,Language,Description\n')
         dct = db.githubrepo.find({'repo': {'$exists': True}})
         for repo in dct:
             pprint.pprint(repo)
             print()
             repo_list.append(repo['repo'])
             commits_list.append(str(repo['total_commits']))
-            f.write(repo['repo'] + ','   + str(repo['total_commits']) + '\n')
+            
+            #language = "N/A" 
+            try:
+                language =  repo['language'] 
+            except KeyError: #some repos dont have a language
+             pass
+     
+            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  +'\n')
 
 
 
