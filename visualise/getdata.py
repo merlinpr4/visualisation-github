@@ -65,8 +65,8 @@ db.githubuser.insert_many([dct])
 fl = usr.get_followers()
 
 for f in fl:
-    dct = {'user':         names[f.login].replace(" ",""), # anonymising
-           'fullname':     names[f.name], # anonymising
+    dct = {'user':         f.login, # anonymising
+           'fullname':     f.name, # anonymising
            'location':     f.location,
            'company':      f.company,
            'public_repos': f.public_repos

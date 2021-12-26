@@ -1,10 +1,7 @@
 d3.csv("commits.csv").then(makeChart);
 
-//configure charts to mouse clicks? cant decide which looks better
-//tidy up code by seperating functions into seperate csv files and functions with comments
 
-
-//make arrays out of the csv values
+//converting the csv values into an earier format for the charts to use
 function makeChart(repos) {
   var reposLabels = repos.map(function (d) {
     return d.Repo;
@@ -21,27 +18,34 @@ function makeChart(repos) {
     return d.Contributors;
   });
 
-  const scatterData = sizeData.map((x, i) => {
-    return {
-      x: x,
-      y: commitsData[i]
-    };
+  var daysData = repos.map(function(d){
+    return d.Days;
   });
+
+  console.log(daysData)
+
+
+  // const scatterData = sizeData.map((x, i) => {
+  //   return {
+  //     x: x,
+  //     y: commitsData[i]
+  //   };
+  // });
 
  //get the average commits  
   let sum = 0;
   for(let i = 0 ; i < commitsData.length ; i ++) {
-    console.log(commitsData[i]);
+    //console.log(commitsData[i]);
     sum += Number(commitsData[i]);
   }
 
   let avg = sum/commitsData.length;
-  console.log(avg);
+  //console.log(avg);
 
   const horizontalLine = commitsData.map(x => avg);
-  console.log(horizontalLine);
+  //console.log(horizontalLine);
 
-console.log(sum);
+//console.log(sum);
 
   var descriptions = repos.map(function (d){
     return d.Descriptions;
@@ -53,7 +57,8 @@ console.log(sum);
 
   var languagefreq = {};
   languages.forEach(function (x) { languagefreq[x] = (languagefreq[x] || 0) + 1; });
-  console.log(languagefreq) 
+ // console.log(languagefreq) 
+
 
   var lang = [];
   var freq = [];
@@ -92,50 +97,27 @@ console.log(sum);
 
   });
 
-
-
-
-  console.log(reposLabels)
-  console.log(commitsData)
-
- 
-  var chart2 = new Chart("sizePerRepo", {
-    type: 'bar',
+  
+  var chart3 = new Chart("daysSpend", {
+    type: 'line',
     data: {
       labels: reposLabels,
       datasets: [{
-        label: "size of repo in KB",
+        label: "days",
         backgroundColor: "#3e95cd",
-        data: sizeData
+        data: daysData
       }]
     },
     options: {
       title: {
         display: true,
-        text: 'Total size of repos'
+        text: 'Days spend on a repository'
       }
     }
 });
 
-//var xValues = [100,200,300,400,500,600,700,800,900,1000];
 
-var chart4 = new Chart("lineGraph", {
-  type: "line",
-  data: {
-    labels: commitsData,
-    datasets: [{
-      data: sizeData,
-      borderColor: "blue",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
-
-
-var chart5 = new Chart("twoLineGraph", {
+var chart2 = new Chart("twoLineGraph", {
   type: "line",
   data: {
     labels: reposLabels,
@@ -160,10 +142,6 @@ var chart5 = new Chart("twoLineGraph", {
     legend: {
       display: true
     },
-
- 
-
-
     scales: {
       yAxes: [{
         gridLines: {
@@ -199,25 +177,7 @@ var chart5 = new Chart("twoLineGraph", {
 });
 
 
-var chart3 = new Chart("sizeVsCommits", {
-  type: 'scatter',
-  data: {
-    labels: reposLabels,
-    datasets: [{
-      label: "size of repo in KB",
-      backgroundColor: "#3e95cd",
-      data: scatterData
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: 'Size vs Commits'
-    }
-  }
-});
-
-var chart5 = new Chart("primaryLanguageFrequency", {
+var chart3 = new Chart("primaryLanguageFrequency", {
   type: 'doughnut',
   data: {
     labels: lang,
@@ -239,11 +199,7 @@ var chart5 = new Chart("primaryLanguageFrequency", {
 
 
 
-
-
-
-
-//create a chart with the data collected
+//creats barchart of total commits per repo
   var chart = new Chart("totalCommits", {
     type: "bar",
     data: {

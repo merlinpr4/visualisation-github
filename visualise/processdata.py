@@ -59,7 +59,7 @@ with open('commits.csv', 'w') as f:
    
              
      
-            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "," + str(repo['contributors']) + str(days_spend)  + "\n")
+            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "," + str(repo['contributors']) + "," + str(days_spend)  + "\n")
 
 
 
