@@ -3,7 +3,21 @@ d3.csv("commits.csv").then(makeChart);
 console.log("hiii")
 
 var div = document.getElementById("user_info");
-div.innerHTML += 'hello world !';
+div.innerHTML += '';
+
+d3.csv("user_info.csv", function(data) {
+  div.innerHTML += "Username: " + data.Username  + "<br />" 
+  div.innerHTML += "Name: " + data.Name  + "<br />" 
+  div.innerHTML += "Public Repos: " + data.Repos  + "<br />" 
+
+  div.innerHTML += "Followers: " + data.Followers + "<br />" 
+  div.innerHTML += "Followings: " + data.Following + "<br />" 
+
+  
+  const img = document.getElementById("profile_pic");
+  img.src = data.PP
+});
+
 
 //converting the csv values into a format for the charts to use
 function makeChart(repos) {

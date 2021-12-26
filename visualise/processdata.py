@@ -16,28 +16,13 @@ client = pymongo.MongoClient(conn)
 db = client.classDB
       
 
-# with open('data.csv', 'w') as f:
-#     f.write('User,RepoCount\n')
-#     dct = db.githubuser.find({'user': {'$exists': True}})
-#     for user in dct:
-#     #    pprint.pprint(user)
-#         # print()
-#         f.write(user['user'] + ',' + str(user['public_repos']) + '\n')
-
-
-repo_list = []
-commits_list = []
-language_list = []
-description_list = []
 with open('commits.csv', 'w') as f:
         f.write('Repo,Commits,Language,Size,Contributors,Days\n')
         dct = db.githubrepo.find({'repo': {'$exists': True}})
         for repo in dct:
             pprint.pprint(repo)
             print()
-            repo_list.append(repo['repo'])
-            commits_list.append(str(repo['total_commits']))
-            
+        
             language = "N/A" 
             try:
                 language =  repo['language'] 
@@ -50,36 +35,16 @@ with open('commits.csv', 'w') as f:
             days_spend = abs(date2 - date1).days
             print(days_spend)
          
-            # description = "empty"
-            # try:
-            #     description =  repo['description'] 
-            # except KeyError: #some repos dont have a language
-            #  pass come back to later
-            
-   
-             
-     
             f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "," + str(repo['contributors']) + "," + str(days_spend)  + "\n")
 
 
+with open("user_info.csv","w") as f :
+    f.write("Username,Name,Followers,Following,Repos,PP\n")
+    dct = db.githubuser.find()
 
-dictionary = dict(zip(repo_list,commits_list))
-
-with open ("repoCommits","w") as outfile:
-    json.dump(dictionary,outfile,indent=2)
-
-
-
-        
-# dct =  db.githubuser.find({'user': {'$exists': True}})   
-# json_object = json.dumps(dct)
-# print ("repo" + json_object)
-
-
-
-
-
-# with open("repo.json", "w") as outfile:
-#     outfile.write(json_object)
+    for user in db.githubuser.find(): 
+        f.write(user["user"] + "," + user["fullname"] +  "," + str(user["followers"]) + "," + str(user["following"]) +","+ str(user["repos"]) +"," + user["profile_pic"] + "\n" )
+  
+       
     
-
+    

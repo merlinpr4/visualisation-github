@@ -29,8 +29,10 @@ dct = {'user':         usr.login,
        'fullname':     usr.name, 
        'location':     usr.location,
        'company':      usr.company,
-       'public_repos': usr.public_repos,
-       "followers"   : usr.followers
+       'repos': usr.public_repos,
+       "followers"   : usr.followers,
+       "following"   : usr.following,
+       "profile_pic" : usr.avatar_url
        
        }
 
@@ -38,7 +40,7 @@ for k, v in dict(dct).items():
     if v is None:
         del dct[k]
         
-#print ("dictionary is " + json.dumps(dct))
+print ("dictionary is " + json.dumps(dct))
         
 # Establish connection
 conn = "mongodb://localhost:27017"
