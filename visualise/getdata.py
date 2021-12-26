@@ -1,10 +1,8 @@
-
 print("Accessing logged in users data");
 
+#make sure to create a env file called api.env with TOKEN = "your authenication key"
 from dotenv import load_dotenv
 load_dotenv("api.env")
-
-
 
 from github import Github   # github api access
 import json                 # for converting a dictionary to a string
@@ -14,13 +12,6 @@ import os
 import pprint               # for pretty printing db data
 import json
 
-# Load the faker and its providers
-from faker import Faker     # for anonymising names
-from collections import defaultdict
-faker  = Faker()
-names  = defaultdict(faker.name)
-
-
 #user token from env file
 token = os.getenv("TOKEN")
 print("token" + token)
@@ -28,21 +19,20 @@ g = Github(token)
 usr = g.get_user()
 
 #alt version taking username warning gets rate limited
-#g = Github("bluesmiley")
+#g = Github("username")
 # g = Github()
 # #Let's get the user object and build a data dictionary
 # usr = g.get_user("Username")
 
 
-dct = {'user':         names[usr.login].replace(" ", ""), # anonymising
-       'fullname':     names[usr.name],  # anonymising
+dct = {'user':         usr.login, 
+       'fullname':     usr.name, 
        'location':     usr.location,
        'company':      usr.company,
-       'public_repos': usr.public_repos
+       'public_repos': usr.public_repos,
+       "followers"   : usr.followers
        
        }
-
-#print ("dictionary is " + json.dumps(dct))
 
 for k, v in dict(dct).items():
     if v is None:
@@ -60,24 +50,7 @@ db = client.classDB
 db.githubuser.insert_many([dct])     
    
 
-
-# now lets get those followers
-fl = usr.get_followers()
-
-for f in fl:
-    dct = {'user':         f.login, # anonymising
-           'fullname':     f.name, # anonymising
-           'location':     f.location,
-           'company':      f.company,
-           'public_repos': f.public_repos
-           }
-    for k, v in dict(dct).items():
-        if v is None:
-            del dct[k]
-        
-   # print("follower: " + json.dumps(dct))
-    db.githubuser.insert_many([dct])    
-        
+#getting information about the logged in users repositories        
 for r in usr.get_repos():
 #    print( r.get_stats_commit_activity().totalCount)
     commits = 0      
