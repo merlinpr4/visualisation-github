@@ -105,8 +105,8 @@ for r in usr.get_repos():
         if v is None:
             del dct[k] 
             
-            
-    print ("repo:" + json.dumps(dct, indent=4, sort_keys=True, default=str))  #indent removes the wierd indentation issues with dates
+    #uncomment if you want to see the database contents for debugging 
+    #print ("repo:" + json.dumps(dct, indent=4, sort_keys=True, default=str))  #indent removes the wierd indentation issues with dates
     db.githubrepo.insert_many([dct]) 
     
     

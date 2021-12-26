@@ -2,8 +2,8 @@
 import pymongo              # for mongodb access
 import pprint               # for pretty printing db data
 import json
-# Let's get the repo object from the db
 
+from datetime import datetime
 
 print("Repo information from mongodb")
 
@@ -16,13 +16,13 @@ client = pymongo.MongoClient(conn)
 db = client.classDB
       
 
-with open('data.csv', 'w') as f:
-    f.write('User,RepoCount\n')
-    dct = db.githubuser.find({'user': {'$exists': True}})
-    for user in dct:
-    #    pprint.pprint(user)
-        # print()
-        f.write(user['user'] + ',' + str(user['public_repos']) + '\n')
+# with open('data.csv', 'w') as f:
+#     f.write('User,RepoCount\n')
+#     dct = db.githubuser.find({'user': {'$exists': True}})
+#     for user in dct:
+#     #    pprint.pprint(user)
+#         # print()
+#         f.write(user['user'] + ',' + str(user['public_repos']) + '\n')
 
 
 repo_list = []
@@ -30,7 +30,7 @@ commits_list = []
 language_list = []
 description_list = []
 with open('commits.csv', 'w') as f:
-        f.write('Repo,Commits,Language,Size,Contributors\n')
+        f.write('Repo,Commits,Language,Size,Contributors,Days\n')
         dct = db.githubrepo.find({'repo': {'$exists': True}})
         for repo in dct:
             pprint.pprint(repo)
@@ -44,6 +44,12 @@ with open('commits.csv', 'w') as f:
             except KeyError: #some repos dont have a language
              pass
          
+            #find the number of days spend on the project by using the date repo was created and last push
+            date1 = repo["created"]
+            date2 = repo["last_push"]
+            days_spend = abs(date2 - date1).days
+            print(days_spend)
+         
             # description = "empty"
             # try:
             #     description =  repo['description'] 
@@ -53,7 +59,7 @@ with open('commits.csv', 'w') as f:
    
              
      
-            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "," + str(repo['contributors']) +  "\n")
+            f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "," + str(repo['contributors']) + str(days_spend)  + "\n")
 
 
 
