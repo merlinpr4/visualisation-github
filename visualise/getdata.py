@@ -29,7 +29,7 @@ dct = {'user':         usr.login,
        'fullname':     usr.name, 
        'location':     usr.location,
        'company':      usr.company,
-       'repos': usr.public_repos,
+       'repos':        usr.public_repos,
        "followers"   : usr.followers,
        "following"   : usr.following,
        "profile_pic" : usr.avatar_url

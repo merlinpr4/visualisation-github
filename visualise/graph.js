@@ -5,14 +5,21 @@ console.log("hiii")
 var div = document.getElementById("user_info");
 div.innerHTML += '';
 
+avg = 0 
+topLang = ""
+freqTopLang = 0
+
 d3.csv("user_info.csv", function(data) {
+  
   div.innerHTML += "Username: " + data.Username  + "<br />" 
   div.innerHTML += "Name: " + data.Name  + "<br />" 
-  div.innerHTML += "Public Repos: " + data.Repos  + "<br />" 
+  div.innerHTML += "Public Repositories: " + data.Repos  + "<br />" 
 
   div.innerHTML += "Followers: " + data.Followers + "<br />" 
   div.innerHTML += "Followings: " + data.Following + "<br />" 
 
+  div.innerHTML += "Average commits per repository: " + avg + "<br />" 
+  div.innerHTML += "Most used primary language : " + topLang + " (primary language of " + freqTopLang + " repos )" + "<br/>" 
   
   const img = document.getElementById("profile_pic");
   img.src = data.PP
@@ -50,7 +57,7 @@ function makeChart(repos) {
     sum += Number(commitsData[i]);
   }
 
-  let avg = sum/commitsData.length;
+  avg = sum/commitsData.length;
   const horizontalLine = commitsData.map(x => avg);
 
   
@@ -63,11 +70,22 @@ function makeChart(repos) {
   languages.forEach(function (x) { languagefreq[x] = (languagefreq[x] || 0) + 1; });
   var lang = [];
   var freq = [];
+ 
     for(x in languagefreq)
     {
+      if (x != "N/A"){
       lang.push(x);
       freq.push(languagefreq[x])
+      }
+
+      if (freqTopLang < languagefreq[x]){
+        freqTopLang = languagefreq[x]
+        topLang = x
+      }
     }
+
+   
+    
 
 
   //language color 
