@@ -18,48 +18,64 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" ></script>
    
   </head>
+  <body  style="background-color: #ffd394">
 
-  <body >
+  
+
+  <nav class="navbar navbar-light" style="background-color: #FFA500">
+    <a class="navbar-brand" href="#">
+      <img src= "assets/githubcat.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Github Visualiser
+    </a>
+  </nav>
 
     <div class="container-fluid"</div>
       <div class="row" >
-        <div class = "card">
-          <div class= "col-md-auto">
+          <div class= "col-md-auto mt-3">
           <img id= "profile_pic" alt="Profile Picture" width="200" height="200">
         </div>
-      </div>
-        <div class = "card" >
+        <div class = "card mt-3" >
         <div class= "col" div id= "user_info" style="position: relative; width:30vw">
           </div>
         </div>
           <div class "col">
-            <div class="card">
+            <div class = "container">
+            <div class="card mt-3 ">
             <div class "chart-container" style="position: relative; width:40vw">
             <canvas id="primaryLanguageFrequency"> </canvas>
           </div>
+        </div>
       </div>
     </div>        
   </div> 
 </div>
 
-    <div class = "card" >
-    <div class= "chart-container" style="position: relative; width:90vw" >
+<div class>
+</div>
+
+  <div class = "container">
+    <div class = "card mt-3">
+    <div class= "chart-container" style="position: relative; " >
     <canvas id= "totalCommits" ></canvas>
 </div>
 </div>
+</div>
 
-    <div class = "card">
-    <div class="chart-container" style="position: relative; width:60vw">
-      <canvas id= "daysSpend" width="50" height="50"></canvas>
+    <div class = "container">
+    <div class = "card mt-3">
+    <div class="chart-container" style="position: relative;">
+      <canvas id= "daysSpend"></canvas>
       </div>
     </div>
+    </div>
 
-    
-    <div class = "card">
-    <div class="chart-container" style="position: relative; width:80vw">
-      <canvas id="twoLineGraph" width="800" height="450"></canvas>
+    <div class = "container">
+    <div class = "card mt-3">
+    <div class="chart-container" style="position: relative;">
+      <canvas id="twoLineGraph" ></canvas>
       </div>
     </div>
+  </div>
 
         
 
