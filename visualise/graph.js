@@ -119,14 +119,20 @@ function makeChart(repos) {
 
   
   //functions to load the graphs
-  commitsChart(reposLabels,languagesColor,commitsData,avg,horizontalLine,sum,sizeData,contributors,languages,daysData)
+  commitsChart(reposLabels,commitsData,avg,horizontalLine,sum,sizeData,contributors,languages,daysData)
   commitsVsSizeChart(reposLabels,commitsData,sizeData)
   languageChart(lang,freq)
   daysChart(reposLabels,daysData,commitsData)
 }
 
 //creats barchart of total commits per repo with extra info such as size,languages,contributors etc
-function commitsChart(reposLabels,languagesColor,commitsData,avg,horizontalLine,sum,sizeData,contributors,languages,daysData){
+function commitsChart(reposLabels,commitsData,avg,horizontalLine,sum,sizeData,contributors,languages,daysData){
+
+  var bar_ctx = document.getElementById('totalCommits').getContext('2d')
+  var background_1 = bar_ctx.createLinearGradient(0, 0, 0, 600);
+  background_1.addColorStop(0, "#E975A8");
+  background_1.addColorStop(1, "#726CF8");
+
 var chart = new Chart("totalCommits", {
   type: "bar",
   data: {
@@ -135,7 +141,7 @@ var chart = new Chart("totalCommits", {
       {
         label: "Commits",
         legend : false ,
-        backgroundColor:  languagesColor,
+        backgroundColor:  background_1,
         data: commitsData,
         order:1 , 
         borderWidth: 1
@@ -202,6 +208,17 @@ var chart = new Chart("totalCommits", {
 });
 }
 
+function getColors(length){
+  let pallet = [ "#7777ff",  "#7FDBFF","#ffff80" ,"#FFBFD3",  "#3D9970", "#ff726f", "#42f5bf", "#0074D9","#39CCCC", "#4ee44e","#01FF70", "#85144b", "#F012BE", "#AAAAAA"];
+  let colors = [];
+
+  for(let i = 0; i < length; i++) {
+    colors.push(pallet[i % (pallet.length - 1)]);
+  }
+
+  return colors;
+}
+
 //doughtnut chart of most commun languages used
 function languageChart(lang,freq){
 var chart3 = new Chart("primaryLanguageFrequency", {
@@ -210,8 +227,7 @@ var chart3 = new Chart("primaryLanguageFrequency", {
     labels: lang,
     datasets: [
       {
-        label: "Population (millions)",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        backgroundColor: getColors(freq.length),
         data: freq
       }
     ]
