@@ -1,56 +1,59 @@
 
-# visualisation-github
+# Visualisation-Github
 
-Check out the data from my github account here :) https://merlinpr4.github.io/testweb/
+## Overview :
+Check out the data from my github account here :) : https://merlinpr4.github.io/repovisual/
 
-Trying to access github api using github access token 
-Currently able to display users followers in a simple bar chart
+This is a visualisation of metrics from github user's repositories which can be used to help in the software engineering process. 
+It pulls data from the Github Rest API ( https://docs.github.com/en/rest).
 
-Access github api of a specifc user gathers info into mongadb database , create a graph on localhost:8000.
+The backend is written in python3 and is supported by a mongodb database. The frontend is written in HTML,CSS and Javascript with the help of chart.js and bootstrap.
 
-Had a lot of initial difficulty with accessing the data I wanted from the api. Realised it would be better to scale back and gather another data and come back . Spending time accessing meant visualising took a hit
+There are two folders API-access and visualise . <br>
+The visualise folder contains all relevant files for the actual visualisation of my project <br>
+The api-access folder shows my first attempts at interacting with Github API. 
 
-So I struggled with accessing the data I wanted in python and tried switching over to javascript so I could just do the fetching and visualisation as one. However I realised later that after spending all this time on python it is probably better to just stick with using it so Im back to using python to create json files for a logged in user.
-
-Aiming to visualise commits per repo and than see how that goes
-
-
-### Note :
- Include your own access token as a env variable named TOKEN  in a  env file called api.env in the visualise folder
- This is my first time using an API and I am a beginner in python
-
-### Dependencies
-Python 3
-Pip
-PyGithub and requests
-Faker
-Docker
-
-### run with prefetched data  (data from my github to be exact)
-1. Type server.bat
-1. Go to localhost:800 (http://localhost:8000/) to see visualisation.
+## Motivation :
 
 
-### Inital setup)
+### Discussion :
+I used the professsor videos as a starting point as I was a new to using API or even creating websites.
+This was my first time interacting with an API so I had a lot of inital difficulties in trying to access the data I wanted. However I was able to eventually get some interesting data. I was a beginner with using both python and javascript but decided to use both in order to gain experience instead of soley doing it in one language.
+I also incorporated a mongoDB database so that if I wanted to gather further information my backend would be organised. 
+I spend a lot of time on the visualisation acsept of my project by customising my graphs colorschemes , tooltips etc which was quite fun and I think the end product is great.
+
+## Dependencies
+- Python 3
+- Pip
+- PyGithub
+- Docker
+- PyMongo
+
+## How to run:
+Live version :  https://merlinpr4.github.io/repovisual/
+
+There are bat files available for quick use on windows
+
+### Inital setup
 1. Have python 3 installed on laptop
-2. Have pip installed on laptop ( python3 get_pip.py ) --come back to check if there inital set up instructions are correct)
-3. Install pyGithub,Faker on laptop using pip (pip install Faker or install.bat)
-4. git clone this repo
+2. git clone this repo
+3. Cd into the visualise folder
+4. Have pip installed on laptop ( python3 get_pip.py )
+5. Install pyGithub on laptop using pip (pip install pyGithub )
+6. pip install pymongo
+7. cd into visualise folder
+8. start mongodb container (docker-compose up)
 
 
-### Run with personal access token and fetch new data to display
-There are bat files available for easier setup if you are on windows aswell
-1.  Go to visualise folder .
-1. Start mongadb container container with docker-compose up (start-database.bat/start-database)
-3.  Clear the previous files in the repo and database with clear (python3 cleardb.py , clear.bat)
-4.  Write your user access token in env file for token (ie TOKEN = useraccesstoken)
-5.  Type python3 gather.py to access the basic data of the user file (or gather.bat to run the bat script).
-6.  Type python3 process.py to access the data in the database (or process.bat to run the shell script).
-7.  Type python3 -m http.server to see the visulaisation on localhost:8000 (or server.bat)
+### Run with personal access token 
+1.  Cd into the visualise folder
+2.  Go to api.env  and write in your personal access token into the TOKEN (TOKEN = "place-token-here"). <br> If you want to use a username instead replace the NAME = "merlinpr4" with the username you wish to look up but this can get rate limited. If neither is supplied it automatically defaults to my github account.
+3.  Type python3 cleardb.py to clear the previous files in the repo and database (clear to run the bat script)
+5.  Type python3 getdata.py to access the basic data of the user file and store it in the database (gather  to run the bat script).
+6.  Type python3 processdata.py to process the data in the database and create csv files (process to run the bat script).
+7.  Type python3 -m http.server to see the visulaisation on localhost:8000 (server)
 8. Go to localhost:800 (http://localhost:8000/) to see visualisation.
 
-Accessing api simple )
-1. Type python3 username.py basic data on the different repos of the user in accessing api folder
 
 
 
