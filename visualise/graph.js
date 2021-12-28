@@ -18,7 +18,6 @@ d3.csv("user_info.csv", function(data) {
   div.innerHTML += "Followers: ".bold() + data.Followers + "<br />" 
   div.innerHTML += "Followings: ".bold() + data.Following + "<br />" 
 
-  div.innerHTML += "Average commits per repository: ".bold() + avg + "<br />" 
   div.innerHTML += "Most used primary language: ".bold() + topLang +  "<br />" + "  (primary language of " + freqTopLang + " repos )" + "<br/>" 
 
 
@@ -60,6 +59,7 @@ function makeChart(repos) {
   }
 
   avg = sum/commitsData.length;
+  avg = parseFloat(avg).toFixed(2)
   const horizontalLine = commitsData.map(x => avg);
 
   
