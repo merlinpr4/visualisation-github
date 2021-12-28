@@ -12,16 +12,19 @@ import os
 import pprint               # for pretty printing db data
 import json
 
-#user token from env file
+#user token from env file.
+#if no token is supplied it uses my username
+# supply your username if you want to change that or use token to do authenicated requests
 token = os.getenv("TOKEN")
-g = Github(token)
-usr = g.get_user()
-
+if token != "place-token-here":
+    g = Github(token)
+    usr = g.get_user()
+else:
 #alt version taking username warning gets rate limited
-# g = Github("username")
-# g = Github()
-# #Let's get the user object and build a data dictionary
-# usr = g.get_user("username")
+  username = os.getenv("NAME")
+  print(username)
+  g = Github()
+  usr = g.get_user(username)
 
 
 dct = {'user':         usr.login, 

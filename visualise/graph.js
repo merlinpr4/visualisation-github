@@ -78,12 +78,12 @@ function makeChart(repos) {
       if (x != "N/A"){
       lang.push(x);
       freq.push(languagefreq[x])
-      }
-
+      
       if (freqTopLang < languagefreq[x]){
         freqTopLang = languagefreq[x]
         topLang = x
       }
+     }
     }
 
     Chart.defaults.global.defaultFontColor = 'black';
