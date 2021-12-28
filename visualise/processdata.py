@@ -39,11 +39,11 @@ with open('commits.csv', 'w') as f:
 
 
 with open("user_info.csv","w") as f :
-    f.write("Username,Name,Followers,Following,Repos,PP\n")
+    f.write("Username,Name,Followers,Following,Repos,Location,PP\n")
     dct = db.githubuser.find()
 
     for user in db.githubuser.find(): 
-        f.write(user["user"] + "," + user["fullname"] +  "," + str(user["followers"]) + "," + str(user["following"]) +","+ str(user["repos"]) +"," + user["profile_pic"] + "\n" )
+        f.write(user["user"] + "," + user["fullname"] +  "," + str(user["followers"]) + "," + str(user["following"]) +","+ str(user["repos"]) +"," + user["location"] + ","+ user["profile_pic"] + "\n" )
   
        
     

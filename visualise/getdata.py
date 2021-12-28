@@ -14,15 +14,14 @@ import json
 
 #user token from env file
 token = os.getenv("TOKEN")
-print("token" + token)
 g = Github(token)
 usr = g.get_user()
 
 #alt version taking username warning gets rate limited
-#g = Github("username")
+# g = Github("username")
 # g = Github()
 # #Let's get the user object and build a data dictionary
-# usr = g.get_user("Username")
+# usr = g.get_user("username")
 
 
 dct = {'user':         usr.login, 

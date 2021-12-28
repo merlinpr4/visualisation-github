@@ -1,6 +1,5 @@
 
 d3.csv("commits.csv").then(makeChart);
-console.log("hiii")
 
 var div = document.getElementById("user_info");
 div.innerHTML += '';
@@ -17,8 +16,9 @@ d3.csv("user_info.csv", function(data) {
 
   div.innerHTML += "Followers: ".bold() + data.Followers + "<br />" 
   div.innerHTML += "Followings: ".bold() + data.Following + "<br />" 
+  div.innerHTML += "Location: ".bold() + data.Location + "<br />" 
 
-  div.innerHTML += "Most used primary language: ".bold() + topLang +  "<br />" + "  (primary language of " + freqTopLang + " repos )" + "<br/>" 
+  div.innerHTML += "Most used top language: ".bold() + topLang +  "<br />" + "  (top language of " + freqTopLang + " repos )" + "<br/>" 
 
 
   
@@ -159,8 +159,7 @@ var chart = new Chart("totalCommits", {
       tooltips: {
         callbacks: {
           label: function(tooltipItem, data) {
-            let line1 = "Total Commits: " + Number(tooltipItem.yLabel)  ;
-            //let line4 =  "description: " + descriptions[tooltipItem.index] ; 
+            let line1 = "Total commits: " + Number(tooltipItem.yLabel)  ;
             return line1 ;
            
           },
@@ -171,7 +170,7 @@ var chart = new Chart("totalCommits", {
             console.log(numerator)
             let line2 =  "Percentage: " + percent + "%";
             let line3 = "Size in KB: " + sizeData[tooltipItem.index]; 
-            let line4 = "Contributors" + contributors[tooltipItem.index];
+            let line4 = "Contributors: " + contributors[tooltipItem.index];
             let line5 =  "Language: " + languages[tooltipItem.index] ;
             let line6 = "Days spend: " + daysData[tooltipItem.index];
             return  [line2 ,line3,line4,line5,line6];
@@ -202,15 +201,35 @@ var chart3 = new Chart("primaryLanguageFrequency", {
     labels: lang,
     datasets: [
       {
+        label: "repos",
         backgroundColor: getColors(freq.length),
         data: freq
       }
     ]
   },
   options: {
+    tooltips: {
+      callbacks: {
+      label: function(tooltipItem, data) {
+        var lang = data.labels[tooltipItem.index];
+         return lang  ;
+        },
+        afterLabel: function(tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+        var total = meta.total;
+        var currentValue = dataset.data[tooltipItem.index];
+        var percentage = parseFloat((currentValue/total*100).toFixed(2));
+        let line2 = currentValue + " " +  data.datasets[tooltipItem.datasetIndex].label 
+        let line3 =   ' (' + percentage + '%)'
+    //   return  currentValue +" " + data.datasets[tooltipItem.datasetIndex].label  + ' (' + percentage + '%)';
+          return [line2,line3];
+        }
+      }
+   },
     title: {
       display: true,
-      text: 'Most commonly used primary language'
+      text: 'Top repository languages'
     }
   }
 });
@@ -283,6 +302,7 @@ function commitsVsSizeChart(reposLabels,commitsData,sizeData){
   });
 }
 
+//days Chart compares the number of days spend on repo from when repo was created to last push vs total commits
 function daysChart(reposLabels,daysData,commitsData ){
 
   var bar_ctx = document.getElementById('daysSpend').getContext('2d')
