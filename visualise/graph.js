@@ -1,4 +1,4 @@
-
+//contains the code for displaying the graphs using the data stored in the csv files
 d3.csv("commits.csv").then(makeChart);
 
 var div = document.getElementById("user_info");
@@ -8,6 +8,7 @@ avg = 0
 topLang = ""
 freqTopLang = 0
 
+//Displays the users stats
 d3.csv("user_info.csv", function(data) {
   
   div.innerHTML += "Username: ".bold() + data.Username  + "<br />" 
@@ -20,8 +21,6 @@ d3.csv("user_info.csv", function(data) {
 
   div.innerHTML += "Most used top language: ".bold() + topLang +  "<br />" + "  (top language of " + freqTopLang + " repos )" + "<br/>" 
 
-
-  
   const img = document.getElementById("profile_pic");
   img.src = data.PP
 });
@@ -96,7 +95,8 @@ function makeChart(repos) {
   daysChart(reposLabels,daysData,commitsData)
 }
 
-//creats barchart of total commits per repo with extra info such as size,languages,contributors etc
+//creates barchart of total commits per repo with extra info such as size,languages,contributors ,days and percentage of commits it accounts for
+//creates a horizontal line with the average of the commits aswell
 function commitsChart(reposLabels,commitsData,avg,horizontalLine,sum,sizeData,contributors,languages,daysData){
 
   //creates the barchart colour gradient
@@ -182,6 +182,7 @@ var chart = new Chart("totalCommits", {
 });
 }
 
+//randomize colours for the piechart
 function getColors(length){
   let pallet = [ "#7777ff",  "#7FDBFF","#ffff80" ,"#FFBFD3",  "#3D9970", "#ff726f", "#42f5bf", "#0074D9","#39CCCC", "#4ee44e","#01FF70", "#85144b", "#F012BE", "#AAAAAA"];
   let colors = [];
@@ -193,7 +194,7 @@ function getColors(length){
   return colors;
 }
 
-//doughtnut chart of most commun languages used
+//doughtnut chart of top language in users repos
 function languageChart(lang,freq){
 var chart3 = new Chart("primaryLanguageFrequency", {
   type: 'doughnut',
@@ -222,7 +223,6 @@ var chart3 = new Chart("primaryLanguageFrequency", {
         var percentage = parseFloat((currentValue/total*100).toFixed(2));
         let line2 = currentValue + " " +  data.datasets[tooltipItem.datasetIndex].label 
         let line3 =   ' (' + percentage + '%)'
-    //   return  currentValue +" " + data.datasets[tooltipItem.datasetIndex].label  + ' (' + percentage + '%)';
           return [line2,line3];
         }
       }

@@ -1,6 +1,7 @@
-print("Accessing logged in users data");
+#access github api and stores data into a database
+print("Accessing logged in users data from Github API");
 
-#make sure to create a env file called api.env with TOKEN = "your authenication key"
+#make sure to create a env file called api.env in visualise folder with TOKEN = "your authenication token" or NAME = "username you want to search" 
 from dotenv import load_dotenv
 load_dotenv("api.env")
 
@@ -13,20 +14,23 @@ import pprint               # for pretty printing db data
 import json
 
 #user token from env file.
-#if no token is supplied it uses my username
 # supply your username if you want to change that or use token to do authenicated requests
+#if neither is supplied it defaults to my username  however usernames get rate limited
 token = os.getenv("TOKEN")
-if token != "place-token-here":
+if token != "place-token-here" and token != None:
+    print(token)
     g = Github(token)
     usr = g.get_user()
 else:
-#alt version taking username warning gets rate limited
   username = os.getenv("NAME")
   print(username)
+  if username == None:
+        username = "merlinpr4"
+        print("username is empty using default")
   g = Github()
   usr = g.get_user(username)
 
-
+#logged in users stats
 dct = {'user':         usr.login, 
        'fullname':     usr.name, 
        'location':     usr.location,
@@ -44,11 +48,10 @@ for k, v in dict(dct).items():
         
 print ("dictionary is " + json.dumps(dct))
         
-# Establish connection
+
 conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
 
-# Create a database
 db = client.classDB
 
 db.githubuser.insert_many([dct])     
@@ -56,7 +59,6 @@ db.githubuser.insert_many([dct])
 
 #getting information about the logged in users repositories        
 for r in usr.get_repos():
-#    print( r.get_stats_commit_activity().totalCount)
     commits = 0      
     try:
      commits = r.get_commits().totalCount
@@ -73,9 +75,8 @@ for r in usr.get_repos():
                 #total number of commits 
                 "total_commits": commits,
                 "contributors" : r.get_contributors().totalCount,
-               # "total deletions" : r.get_stats_code_frequency,
                  "size": r.size,
-                # main programming language
+                # top programming language
                 "language": r.language
                 }
     for k, v in dict(dct).items():

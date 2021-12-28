@@ -1,11 +1,11 @@
-
+#processes the data stored in the database into a csv files for the frontend
 import pymongo              # for mongodb access
 import pprint               # for pretty printing db data
 import json
 
-from datetime import datetime
+from datetime import datetime #for date strings
 
-print("Repo information from mongodb")
+print("Processing data from mongadb database into csv files")
 
 
 # Establish connection
@@ -15,7 +15,6 @@ client = pymongo.MongoClient(conn)
 # Create a database
 db = client.classDB
       
-
 with open('commits.csv', 'w') as f:
         f.write('Repo,Commits,Language,Size,Contributors,Days\n')
         dct = db.githubrepo.find({'repo': {'$exists': True}})
@@ -29,10 +28,10 @@ with open('commits.csv', 'w') as f:
             except KeyError: #some repos dont have a language
              pass
          
-            #find the number of days spend on the project by using the date repo was created and last push
+            #find the number of days spend on the project by counting the days from when the repo was created and the last push to the repository
             date1 = repo["created"]
             date2 = repo["last_push"]
-            days_spend = abs(date2 - date1).days
+            days_spend = abs(date2 - date1).days 
             print(days_spend)
          
             f.write(repo['repo'] + ','   + str(repo['total_commits']) +','  + language  + "," +  str(repo['size']) + "," + str(repo['contributors']) + "," + str(days_spend)  + "\n")

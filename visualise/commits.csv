@@ -1,15 +1,10 @@
 Repo,Commits,Language,Size,Contributors,Days
 AWS-Topology-Mapper,99,CSS,13410,7,69
 branch-practise,21,N/A,9,1,1
-CompArch,1,N/A,0,1,0
 CPU,2,VHDL,59,1,0
-eclipseProj,1,N/A,0,1,0
 first-year,2,Processing,37,1,0
-firstYearBackup,1,N/A,0,1,0
 firstYearJava,3,Java,43,1,0
 FlowForwarding,2,Java,709,1,0
-helloworld,1,N/A,0,1,0
-hiWorld,3,N/A,1,1,0
 introprog,3,Java,5,1,0
 introToProgramming,4,Java,230,1,23
 introToProgramming-connect4,2,Java,4,1,0
@@ -20,7 +15,7 @@ processing,2,Processing,178,1,0
 PubSubProtocol,2,Java,44,1,0
 SecondYearAlgo,3,Java,341,1,0
 SWENG-Bio,6,N/A,347,1,0
-testwebsite,5,HTML,10,1,0
+testweb,3,Python,1734,1,0
 trial,5,Java,6,1,59
-visualisation-github,84,Python,1918,1,41
+visualisation-github,94,Python,1941,1,43
 CSU22012-Algorithm-Data-Structure-Group-Project,38,Java,44071,4,19
