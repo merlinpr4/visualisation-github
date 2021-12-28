@@ -136,6 +136,11 @@ var chart = new Chart("totalCommits", {
          position: 'top',
          display:  true 
       },
+      plugins: {
+        deferred: {
+          yOffset: '75%'
+        }
+    },
       title: {
         display: true,  
         text: "Total commits per repository"
@@ -268,6 +273,11 @@ function commitsVsSizeChart(reposLabels,commitsData,sizeData){
       title: {
         display: true,
         text: 'Total Commits vs Total Size'
+    },
+    plugins: {
+      deferred: {
+        yOffset: '60%'
+      }
     }
   }
   });
@@ -307,7 +317,12 @@ var chart3 = new Chart("daysSpend", {
     title: {
       display: true,
       text: 'Total Commits vs Days Spend '
-    }
+    },
+    plugins: {
+      deferred: {
+        yOffset: '65%'
+      }
   }
+ }
 });
 }
