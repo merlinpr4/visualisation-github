@@ -11,15 +11,17 @@ freqTopLang = 0
 
 d3.csv("user_info.csv", function(data) {
   
-  div.innerHTML += "Username: " + data.Username  + "<br />" 
-  div.innerHTML += "Name: " + data.Name  + "<br />" 
-  div.innerHTML += "Public Repositories: " + data.Repos  + "<br />" 
+  div.innerHTML += "Username: ".bold() + data.Username  + "<br />" 
+  div.innerHTML += "Name: ".bold() + data.Name  + "<br />" 
+  div.innerHTML += "Public Repositories: ".bold() + data.Repos  + "<br />" 
 
-  div.innerHTML += "Followers: " + data.Followers + "<br />" 
-  div.innerHTML += "Followings: " + data.Following + "<br />" 
+  div.innerHTML += "Followers: ".bold() + data.Followers + "<br />" 
+  div.innerHTML += "Followings: ".bold() + data.Following + "<br />" 
 
-  div.innerHTML += "Average commits per repository: " + avg + "<br />" 
-  div.innerHTML += "Most used primary language : " + topLang + " (primary language of " + freqTopLang + " repos )" + "<br/>" 
+  div.innerHTML += "Average commits per repository: ".bold() + avg + "<br />" 
+  div.innerHTML += "Most used primary language: ".bold() + topLang +  "<br />" + "  (primary language of " + freqTopLang + " repos )" + "<br/>" 
+
+
   
   const img = document.getElementById("profile_pic");
   img.src = data.PP
@@ -84,40 +86,9 @@ function makeChart(repos) {
       }
     }
 
-   
+    Chart.defaults.global.defaultFontColor = 'black';
     
 
-
-  //language color 
-  var languagesColor = repos.map(function   (d){
-     if (d.Language === "Java")
-       return "#b07219";
-     else if(d.Language === "Python")
-       return "#3572A5";
-     else if(d.Language === "CSS")
-       return "#756bb1";
-     else if(d.Language === "Ruby")
-        return "#701516";
-     else if (d.Language === "Javascript")
-        return "#f1e05a";
-     else if (d.Language === "R")
-        return "#198ce7";
-     else if (d.Language === "C")
-        return  "#555555";
-      else if (d.Language === "C++")
-        return
-      else if (d.Language === "PHP")
-        return "#4F5D95"
-      else if (d.Language === "Shell")
-        return "#89e051";
-      else if (d.Language === "TypeScript")
-        return "#2b7489";
-     else 
-       return  'Green';
-
-  });
-
-  
   //functions to load the graphs
   commitsChart(reposLabels,commitsData,avg,horizontalLine,sum,sizeData,contributors,languages,daysData)
   commitsVsSizeChart(reposLabels,commitsData,sizeData)
@@ -128,32 +99,31 @@ function makeChart(repos) {
 //creats barchart of total commits per repo with extra info such as size,languages,contributors etc
 function commitsChart(reposLabels,commitsData,avg,horizontalLine,sum,sizeData,contributors,languages,daysData){
 
+  //creates the barchart colour gradient
   var bar_ctx = document.getElementById('totalCommits').getContext('2d')
-  var background_1 = bar_ctx.createLinearGradient(0, 0, 0, 600);
-  background_1.addColorStop(0, "#E975A8");
-  background_1.addColorStop(1, "#726CF8");
+  var colours = bar_ctx.createLinearGradient(0, 0, 0, 600);
+  colours.addColorStop(0, "#E975A8");
+  colours.addColorStop(1, "#726CF8");
 
 var chart = new Chart("totalCommits", {
   type: "bar",
   data: {
     labels: reposLabels,
-    datasets: [
-      {
-        label: "Commits",
-        legend : false ,
-        backgroundColor:  background_1,
+    datasets: [ {
+        label: "commits",
+        backgroundColor:  colours,
         data: commitsData,
         order:1 , 
         borderWidth: 1
       },
      {
-        label: "Average Commits: " + avg,
-        borderColor: "blue",
+        label: "average commits: " + avg,
+        borderColor: "#80b6f4",
         data: horizontalLine , 
         borderDash : [5,5 ],
         pointRadius : 0 ,
         fill: false ,
-        borderWidth: 1.5,
+        borderWidth: 3,
         type: "line",
         order:0
       }
@@ -252,7 +222,7 @@ function commitsVsSizeChart(reposLabels,commitsData,sizeData){
         labelString: "Total Commits",
         yAxisID: "commits",
         data: commitsData,
-        borderColor: "blue",
+        borderColor: "#ff69b4",
         fill: false
       },
         {
@@ -260,7 +230,7 @@ function commitsVsSizeChart(reposLabels,commitsData,sizeData){
           labelString: "Total Size(KB)",
           yAxisID: "size",
           data: sizeData,
-          borderColor: "purple",
+          borderColor: "#00FFFF",
           fill: false
       }]
     },
@@ -304,26 +274,39 @@ function commitsVsSizeChart(reposLabels,commitsData,sizeData){
 }
 
 function daysChart(reposLabels,daysData,commitsData ){
+
+  var bar_ctx = document.getElementById('daysSpend').getContext('2d')
+  var colours1 = bar_ctx.createLinearGradient(0, 0, 0, 600);
+  colours1.addColorStop(0, "#55D284");
+  colours1.addColorStop(1, "#F2CF07");
+
+  var colours2 = bar_ctx.createLinearGradient(0, 0, 0, 600);
+  colours2.addColorStop(0, "#EB6B9D");
+  colours2.addColorStop(1, "#EE8C68");
+
+
 var chart3 = new Chart("daysSpend", {
   type: 'bar',
   data: {
     labels: reposLabels,
-    datasets: [{
+    datasets: [
+      {
+        label: "commits",
+        backgroundColor: colours2,
+        data: commitsData 
+      },  
+    {
       label: "days",
-      backgroundColor: "#3e95cd",
+      backgroundColor: colours1,
       data: daysData
     },
-    {
-      label: "commits",
-      backgroundColor: "green",
-      data: commitsData 
-    }
+  
   ]
   },
   options: {
     title: {
       display: true,
-      text: 'Days spend on repo vs total commits'
+      text: 'Total Commits vs Days Spend '
     }
   }
 });
