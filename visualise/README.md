@@ -5,6 +5,12 @@ Live version here :   https://merlinpr4.github.io/repovisual/
 ### Gifs of charts from website 
 
 
-![](https://github.com/merlinpr4/visualisation-github/images/languagesChart.gif)
+![language chart ](https://github.com/merlinpr4/visualisation-github/blob/main/images/languageChart.gif)
+
+![](https://github.com/merlinpr4/visualisation-github/blob/main/images/totalCommitsChart.gif)
+
+![](https://github.com/merlinpr4/visualisation-github/blob/main/images/sizeChart.gif)
+
+![](https://github.com/merlinpr4/visualisation-github/blob/main/images/daysChart.gif)
 
 
