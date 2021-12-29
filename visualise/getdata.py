@@ -64,6 +64,13 @@ def accessRepoInfo():
       except Exception: #empty repos with 0 commits default to 0
         pass
       
+      contributors = 1000
+      try:
+       contributors = r.get_commits().totalCount
+      except Exception: #repos with too many contributors default to 1000
+        pass
+      
+      
       dct = {     "repo": r.name,
                   # repository description
                   "description": r.description,
@@ -73,7 +80,7 @@ def accessRepoInfo():
                   "last_push": r.pushed_at,
                   #total number of commits 
                   "total_commits": commits,
-                  "contributors" : r.get_contributors().totalCount,
+                  "contributors" : contributors,
                   "size": r.size,
                   # top programming language
                   "language": r.language
