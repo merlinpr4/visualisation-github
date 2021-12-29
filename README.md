@@ -33,6 +33,9 @@ There are bat files available for quick use on windows
 7. cd into visualise folder
 8. start mongodb container (docker-compose up)
 
+### Run with prefetched data
+1.  Type python3 -m http.server to see the visulaisation on localhost:8000 (server)
+2. Go to localhost:800 (http://localhost:8000/) to see visualisation. The webpage should display the previously fetched information
 
 ### Run with personal access token 
 1.  Cd into the visualise folder
