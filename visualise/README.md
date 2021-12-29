@@ -1,12 +1,10 @@
 
-Starting the github visualise task task used python code as base from videos
-Sup env for github access token with TOKEN as keyword
-Set up bat files for scripts
+Folder contains all the files needed for the visualisation task 
+Live version here :   https://merlinpr4.github.io/repovisual/
 
-The following image shows the followers of my repo in an anoymised fashion using d3 libary and csv file
-![](https://github.com/merlinpr4/visualisation-github/blob/main/images/barchart.PNG)
+### Gifs of charts from website 
 
-To get same output run
-gather.bat
-process.bat
-run-server.bat
+
+![](https://github.com/merlinpr4/visualisation-github/images/languagesChart.gif)
+
+
