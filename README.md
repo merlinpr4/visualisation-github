@@ -72,8 +72,9 @@ The line graphs compare total commits in a repo against total size in order to s
 ![commits vs days](images/daysChart.gif) <br>
 I wanted to see how the number of days spent on the repo would affect the total commits of the repo. I calculated the days by counting the days between when the repo was created and its final push . I worked under the assumption that they created a repo at the start of the project and their last commit would be when they were finished. I thought this might be a more interesting metric to analyse than active days as I could also account for days when the user wasn't coding but was still working on the project . Generally the more time spent on the repo the higher the total commits would be.  One issue is that  if the user makes a small change to the repo after a long time has passed it would heavily affect the total days with the current calculation. I think that this graph could be used to gauge how long another similarly difficult project would take the user to complete.
 
-I had originally set out to measure code churn of each repository of the user along with these other repository meterics but I struggled to access this information from the API . If I did this project again I would definitely try to measure that information on top of the data I have already gathered.
-Overall this assigment was a lot of fun and really helped me improve and learn multiple new skills. I am proud of the end product and it also helped highlight to me the amount of data software engineers produce along with the advantages and disadvantages that come along with the different meterics one can use to measure it.
+I had originally set out to measure code churn of each repository of the user along with these other repository metrics but I struggled to access this information from the API . If I did this project again I would definitely try to measure that information on top of the data I have already gathered.
+Overall this assignment was a lot of fun and really helped me improve and learn multiple new skills. I am proud of the end product and it also helped highlight to me the amount of data software engineers produce along with the advantages and disadvantages that come along with the different metrics one can use to measure it.
+
 
 
 
